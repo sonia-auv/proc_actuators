@@ -21,8 +21,8 @@ endif (NOT CMAKE_BUILD_TYPE)
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -std=c++11 -Wall")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -std=c++11 -O3 -s")
 
-set(proc_actuators_SRC_DIR "src")
-
+set(proc_actuators_SRC_DIR "src/proc_actuators")
+set(proc_actuators_INCLUDE_DIR "src")
 #===============================================================================
 # C A T K I N   C O N F I G U R A T I O N
 
@@ -34,7 +34,7 @@ find_package(
         std_msgs
         message_generation
         message_runtime
-
+        provider_actuators
 )
 
 #===============================================================================
@@ -45,16 +45,14 @@ find_package(
 #        SystemTemperature.msg
 #        )
 
-#add_service_files(DIRECTORY srv FILES )
+add_service_files(DIRECTORY srv FILES cmActionSrv.srv)
 
-#generate_messages()
+generate_messages(DEPENDENCIES std_msgs)
 
-#catkin_package(
-#        CATKIN_DEPENDS
-#        roscpp
-#        std_msgs
-#        message_runtime
-#)
+catkin_package(
+        CATKIN_DEPENDS
+        roscpp
+)
 
 
 
@@ -66,17 +64,17 @@ file(GLOB_RECURSE proc_actuators_FILES
         "${proc_actuators_SRC_DIR}/*.h")
 
 list(REMOVE_ITEM proc_actuators_FILES
-        ${CMAKE_CURRENT_SOURCE_DIR}/${proc_actuators_SRC_DIR}/${PROJECT_NAME}/main.cc)
+    ${CMAKE_CURRENT_SOURCE_DIR}/${proc_actuators_SRC_DIR}/${proc_actuators_SRC_DIR}/main.cc)
 
 include_directories(
+        ${proc_actuators_INCLUDE_DIR}
         ${catkin_INCLUDE_DIRS}
-        ${proc_actuators_SRC_DIR}
 )
 
 #==========================================================================
 # C R E A T E   E X E C U T A B L E
 
-add_executable(${PROJECT_NAME}_node ${proc_actuators_SRC_DIR}/${PROJECT_NAME}/main.cc ${proc_actuators_FILES})
+add_executable(${PROJECT_NAME}_node ${proc_actuators_SRC_DIR}/main.cc ${proc_actuators_FILES})
 target_link_libraries(${PROJECT_NAME}_node
         ${catkin_LIBRARIES}
         yaml-cpp

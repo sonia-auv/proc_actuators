@@ -23,7 +23,8 @@
  * along with S.O.N.I.A. software. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "proc_actuators/proc_actuators_node.h"
+#include <ros/ros.h>
+#include "proc_actuators_node.h"
 
 namespace proc_actuators {
 
@@ -35,9 +36,8 @@ namespace proc_actuators {
     ProcActuatorsNode::ProcActuatorsNode(const ros::NodeHandlePtr &nh)
         : nh_(nh)
     {
-
-
-
+        providerClient = nh->serviceClient<provider_actuators::DoActionSrv>("/provider_actuators/do_action_srv");
+        cmServer = nh->advertiseService("/proc_actuators", &ProcActuatorsNode::cmContactCallback, this);
     }
 
     //------------------------------------------------------------------------------
@@ -51,8 +51,32 @@ namespace proc_actuators {
 
     void ProcActuatorsNode::Spin()
     {
+        ros::Rate r(1);
+        while(ros::ok())
+        {
+            ros::spinOnce();
+            r.sleep();
+        }
+    }
 
+    bool ProcActuatorsNode::cmContactCallback(cmActionSrv::Request &request, cmActionSrv::Response &response)
+    {
+        provider_actuators::DoActionSrv srv;
 
+        srv.request.action = request.action;
+        srv.request.element = request.element;
+        srv.request.side = request.side;
+
+        if(providerClient.call(srv))
+        {
+            ROS_INFO("/provider_actuators/do_action_srv call succeed!");
+        }
+        else
+        {
+            ROS_ERROR("failed to call /provider_actuators/do_action_srv");
+        }
+
+        return true;
     }
 
 

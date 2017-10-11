@@ -1,4 +1,5 @@
 /**
+ *
  * \file	proc_actuators_node.h
  * \author	Olivier Beguin <olivier.beguinti@gmail.com>
  * \date	06/10/2017
@@ -27,6 +28,8 @@
 #define PROC_ACTUATORS_PROC_ACTUATORS_NODE_H_
 
 #include <ros/node_handle.h>
+#include <provider_actuators/DoActionSrv.h>
+#include <proc_actuators/cmActionSrv.h>
 
 #include <cstdio>
 #include <iostream>
@@ -57,7 +60,10 @@ class ProcActuatorsNode {
 private:
 
     ros::NodeHandlePtr nh_;
+    ros::ServiceServer cmServer;
+    ros::ServiceClient providerClient;
 
+    bool cmContactCallback(cmActionSrv::Request &request, cmActionSrv::Response &response);
 };
 
 }  // namespace proc_actuators
