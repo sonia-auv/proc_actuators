@@ -37,7 +37,7 @@ namespace proc_actuators {
         : nh_(nh)
     {
         providerClient = nh->serviceClient<provider_actuators::DoActionSrv>("/provider_actuators/do_action_srv");
-        cmServer = nh->advertiseService("/proc_actuators", &ProcActuatorsNode::cmContactCallback, this);
+        cmServer = nh->advertiseService("/proc_actuators/cm_action_srv", &ProcActuatorsNode::cmContactCallback, this);
     }
 
     //------------------------------------------------------------------------------
