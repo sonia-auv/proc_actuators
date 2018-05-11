@@ -1,0 +1,6 @@
+<launch>
+	<node name="proc_actuators"
+	    pkg="proc_actuators"
+	    type="proc_actuators_node"
+	    output="screen" />
+</launch>
