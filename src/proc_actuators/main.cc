@@ -23,8 +23,7 @@
  * along with S.O.N.I.A. software. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <ros/ros.h>
-#include "proc_actuators/proc_actuators_node.h"
+#include "proc_actuators_node.h"
 
 int main(int argc, char **argv) {
   ros::init(argc, argv, "proc_actuators");
@@ -35,3 +34,4 @@ int main(int argc, char **argv) {
 
   return 0;
 }
+
