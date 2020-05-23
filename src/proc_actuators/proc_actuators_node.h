@@ -28,8 +28,7 @@
 #define PROC_ACTUATORS_PROC_ACTUATORS_NODE_H_
 
 #include <ros/node_handle.h>
-#include <provider_actuators/DoActionSrv.h>
-#include <proc_actuators/cmActionSrv.h>
+#include <sonia_msgs/ActuatorDoActionSrv.h>
 
 #include <cstdio>
 #include <iostream>
@@ -63,7 +62,7 @@ private:
     ros::ServiceServer cmServer;
     ros::ServiceClient providerClient;
 
-    bool cmContactCallback(cmActionSrv::Request &request, cmActionSrv::Response &response);
+    bool cmContactCallback(sonia_msgs::ActuatorDoActionSrv::Request &request, sonia_msgs::ActuatorDoActionSrv::Response &response);
 };
 
 }  // namespace proc_actuators
