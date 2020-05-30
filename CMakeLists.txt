@@ -33,21 +33,7 @@ find_package(
         cmake_modules
         std_msgs
         sonia_msgs
-        message_generation
-        message_runtime
 )
-
-#===============================================================================
-# G E N E R A T E   M E S S A G E S   &   S E R V I C E S
-
-#add_message_files(DIRECTORY msg
-#        FILES
-#        SystemTemperature.msg
-#        )
-
-# add_service_files(DIRECTORY srv FILES cmActionSrv.srv)
-
-# generate_messages(DEPENDENCIES std_msgs)
 
 catkin_package(
         CATKIN_DEPENDS
