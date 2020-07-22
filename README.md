@@ -8,21 +8,14 @@ This module is a process that send an action to the actuators based on [ROS](htt
 ![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/sonia-auv/proc_actuators.svg)
 
 
-*Please read the instructions and fill in the blanks*
-
-
-One Paragraph of project description goes here
-
 ## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 Clone current project by using following command :
 ```bash
     git clone git@github.com:sonia-auv/proc_actuators.git
 ```
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-**IMPORTANT :** *If you have just imported your repository, please follow the instructions in* [BOOTSTRAP.md](BOOTSTRAP.md) (Once the bootstrap completed, you can remove this comment from the README)
 
 ### Prerequisites
 
