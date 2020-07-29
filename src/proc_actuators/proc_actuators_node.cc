@@ -36,7 +36,7 @@ namespace proc_actuators {
     ProcActuatorsNode::ProcActuatorsNode(const ros::NodeHandlePtr &nh)
         : nh_(nh)
     {
-        providerClient = nh->serviceClient<sonia_msgs::ActuatorDoActionSrv>("/provider_actuators/do_action_srv");
+        providerClient = nh->serviceClient<sonia_common::ActuatorDoActionSrv>("/provider_actuators/do_action_srv");
         cmServer = nh->advertiseService("/proc_actuators/cm_action_srv", &ProcActuatorsNode::cmContactCallback, this);
     }
 
@@ -59,9 +59,9 @@ namespace proc_actuators {
         }
     }
 
-    bool ProcActuatorsNode::cmContactCallback(sonia_msgs::ActuatorDoActionSrv::Request &request, sonia_msgs::ActuatorDoActionSrv::Response &response)
+    bool ProcActuatorsNode::cmContactCallback(sonia_common::ActuatorDoActionSrv::Request &request, sonia_common::ActuatorDoActionSrv::Response &response)
     {
-        sonia_msgs::ActuatorDoActionSrv srv;
+        sonia_common::ActuatorDoActionSrv srv;
 
         srv.request.action = request.action;
         srv.request.element = request.element;
