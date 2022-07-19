@@ -70,13 +70,14 @@ namespace proc_actuators {
         if(providerClient.call(srv))
         {
             ROS_INFO("/provider_actuators/do_action_srv call succeed!");
+            return true;
         }
         else
         {
             ROS_ERROR("failed to call /provider_actuators/do_action_srv");
+            return false;
         }
 
-        return true;
     }
 
 
